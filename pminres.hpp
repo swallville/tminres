@@ -86,6 +86,7 @@ Known bugs:
 #include <vector>
 #include <cmath>
 #include <algorithm>
+#include <limits>
 
 template< typename Operator, typename Vector, typename Preconditioner>
 int
@@ -194,7 +195,7 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 	double qrnorm(beta1), phi(0.0), phibar(beta1), rhs1(beta1);
 	double rhs2(0.0), tnorm2(0.0), ynorm2(0.0);
 	double cs(-1.0), sn(0.0);
-	double gmax(0.0), gmin(0.0);
+	double gmax(0.0), gmin(std::numeric_limits<double>::max( ));
 	double alpha(0.0), gamma(0.0);
 	double delta(0.0), gbar(0.0);
 	double z(0.0);
