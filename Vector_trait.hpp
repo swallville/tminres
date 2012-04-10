@@ -1,9 +1,17 @@
-/*
- * Vector_trait.hpp
- *
- *  Created on: Apr 6, 2012
- *      Author: uvilla
- */
+// tminres is free software; you can redistribute it and/or modify it under the
+// terms of the GNU Lesser General Public License (as published by the Free
+// Software Foundation) version 2.1 dated February 1999.
+//
+// Authors:
+// - Umberto Villa, Emory University - uvilla@emory.edu
+// - Michael Saunders, Stanford University
+// - Santiago Akle, Stanford University
+
+/*!
+@file
+@author U. Villa - uvilla@emory.edu
+@date 04/2012
+*/
 
 #ifndef VECTOR_TRAIT_HPP_
 #define VECTOR_TRAIT_HPP_
