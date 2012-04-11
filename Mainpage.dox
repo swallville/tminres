@@ -1,6 +1,7 @@
--------------------------------------------------------------------------------
+/*!
+    @mainpage tminres - A C++ Template Implementation of Minres
 
-A templated parallel C++ implementation of the minres algorithm.
+    \section introduction Introduction
 
 MINRES is a Krylov subspace iterative method for the solution of large sparse
 symmetric (possibly indefinite) linear systems.
@@ -16,10 +17,10 @@ available at
 
 http://www.stanford.edu/group/SOL/software/minres.html
 
--------------------------------------------------------------------------------
+    \section design Design
 
 The aim of tminres is to provide an efficient and portable implementation of 
-the minres algorithm.
+the MINRES algorithm.
 
 tminres supports user-defined parallel and serial data structure for the 
 description of vectors, linear operators, and preconditioners.
@@ -31,23 +32,25 @@ Users can decide whenever to use static (templates) or dynamic (derivated classe
 polymorphism in order to provide such interfaces.
 
 Two concrete implementations of Vector_trait and Operator_trait are included in the code:
-
-  1)  Serial code: A VectorSimple class implements the methods required by minres.
-  2)  Parallel code: A VectorEpetraAdapter shows how to wrap parallel data structures
+<ul>
+  <li>  Serial code: A VectorSimple class implements the methods required by minres.
+  
+  <li>  Parallel code: A VectorEpetraAdapter shows how to wrap parallel data structures
       in Trilinos (http://trilinos.sandia.gov/) to be used with tminres.
-      
--------------------------------------------------------------------------------
+</ul>
 
-DOCUMENTATION
+    \section documentation Documentation
+    
+To create this documentation:
 
-To create the documentation
+\verbatim
+ $ doxygen Doxyfile.in
+\endverbatim
 
-$ doxygen Doxyfile.in
+    \section examples Examples
 
--------------------------------------------------------------------------------
-EXAMPLES
-
-SerialExample:
+<ul>
+<li> SerialExample:
 - In ex1 we solve a linear system with a diagonal operator
   (half of the entries are positive, half are negative).
   No preconditioner is used.
@@ -58,14 +61,15 @@ SerialExample:
 
 To compile and execute the serial examples:
 
+\verbatim
 $ cd SerialExample
 $ make
 $ ./ex1
 $ ./ex2
 $ make clean
+\endverbatim
 
-
-TrilinosExample:
+<li> TrilinosExample:
 
 In this example we show how to use Trilinos parallel vectors and matrices
 (Epetra_MultiVector and Epetra_CrsMatrix) with our minres code.
@@ -80,8 +84,12 @@ The installation of Trilinos may require additional external libraries, such as 
 To compile and execute the Trilinos examples you first need to edit the Makefile.in according to
 your system configuration and Trilinos compiling options.
 
+\verbatim
 $ cd TrilinosExample
 $ vi Makefile.in
 $ make
 $ mpirun -n XX ./ex1.exe
 $ make clean 
+\endverbatim
+</ul>
+ */

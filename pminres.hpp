@@ -11,10 +11,10 @@
 @file
 @author U. Villa - uvilla@emory.edu
 @date 04/2012
-*/
 
-/*!
- @fn int MINRES
+ @fn int MINRES(const Operator &A, Vector &x, const Vector &b,
+         const Preconditioner * M, double shift, int &max_iter, double &tol, bool show)
+
  @brief Preconditioner Minres algorithm
 
 minres solves the n x n system of linear equations Ax = b
@@ -22,14 +22,11 @@ or the n x n least squares problem           min ||Ax - b||_2^2,
 where A is a symmetric matrix (possibly indefinite or singular)
 and b is a given vector.  The dimension n is defined by length(b).
 
-
-PARAMETERS:
-
-@param A : const OPERATOR & (INPUT)
+@param A const OPERATOR & (INPUT)
   A is a linear operator with a method Apply(const Vector & X, Vector & Y)
  which gives the product y = A*x for any given n-vector x.
 
-@param x : VECTOR & (INPUT/OUTPUT)
+@param x VECTOR & (INPUT/OUTPUT)
   "x" is the initial guess (INPUT) and the solution of the linear system (OUTPUT).
 
 @param b const VECTOR & (INPUT)
@@ -46,19 +43,6 @@ PARAMETERS:
  (or the corresponding least-squares problem if shift is an
  eigenvalue of A).
 
- When M = C*C' exists, minres implicitly solves the system
-
-            P(A - shift*I)P'xbar = Pb,
-    i.e.               Abar xbar = bbar,
-    where                      P = inv(C),
-                            Abar = P(A - shift*I)P',
-                            bbar = Pb,
-
- and returns the solution      x = P'xbar.
- The associated residual is rbar = bbar - Abar xbar
-                                 = P(b - (A - shift*I)x)
-                                 = Pr.
-
 @param max_iter int& (INPUT/OUTPUT)
   "max_iter" is the maximum number of minres iterations (INPUT) and the actual number of iteration
   at termination (OUTPUT)
@@ -69,24 +53,38 @@ PARAMETERS:
 @param show bool (INPUT)
   If "show" is true print information on screen.
 
-RETURN:
-
-@param istop int
+@return istop int
  "istop"  is a value from [-1:9] to indicate the reason for termination.
         The reason is summarized in msg[istop+2] below.
 
-Known bugs:
-%  1. ynorm is currently mimicking ynorm in symmlq.m.
-%     It should be sqrt(x'Mx), but doesn't seem to be correct.
-%     Users really want xnorm = norm(x) anyway.  It would be safer
-%     to compute it directly.
-%  2. As Jeff Kline pointed out, Arnorm = ||A r_{k-1}|| lags behind
-%     rnorm = ||r_k||.  On singular systems, this means that a good
-%     least-squares solution exists before Arnorm is small enough
-%     to recognize it.  The solution x_{k-1} gets updated to x_k
-%     (possibly a very large solution) before Arnorm shuts things
-%     down the next iteration.  It would be better to keep x_{k-1}.
+ When M = C*C' exists, minres implicitly solves the system
 
+@verbatim
+            P(A - shift*I)P'xbar = Pb,
+    i.e.               Abar xbar = bbar,
+    where                      P = inv(C),
+                            Abar = P(A - shift*I)P',
+                            bbar = Pb,
+
+ and returns the solution      x = P'xbar.
+ The associated residual is rbar = bbar - Abar xbar
+                                 = P(b - (A - shift*I)x)
+                                 = Pr.
+@endverbatim
+
+Known bugs:
+<ul>
+  <li> ynorm is currently mimicking ynorm in symmlq.m.
+     It should be sqrt(x'Mx), but doesn't seem to be correct.
+     Users really want xnorm = norm(x) anyway.  It would be safer
+     to compute it directly.
+  <li> As Jeff Kline pointed out, Arnorm = ||A r_{k-1}|| lags behind
+     rnorm = ||r_k||.  On singular systems, this means that a good
+     least-squares solution exists before Arnorm is small enough
+     to recognize it.  The solution x_{k-1} gets updated to x_k
+     (possibly a very large solution) before Arnorm shuts things
+     down the next iteration.  It would be better to keep x_{k-1}.
+</ul>
 */
 
 #include <limits>
