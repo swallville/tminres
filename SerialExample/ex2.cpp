@@ -34,7 +34,7 @@
  * \f}
  *
  */
-#include <pminres.hpp>
+#include <tminres.hpp>
 #include "SimpleVector.hpp"
 #include <cmath>
 #include <cassert>

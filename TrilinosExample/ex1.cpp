@@ -15,7 +15,7 @@
 
 #include "EpetraVectorAdapter.hpp"
 #include "EpetraOperatorAdapter.hpp"
-#include "pminres.hpp"
+#include "tminres.hpp"
 
 #include <mpi.h>
 

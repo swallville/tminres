@@ -13,7 +13,7 @@
 @date 04/2012
 */
 
-#include <pminres.hpp>
+#include <tminres.hpp>
 #include "SimpleVector.hpp"
 #include <cmath>
 
