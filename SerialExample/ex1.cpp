@@ -76,7 +76,7 @@ private:
 /*!
  * \example SerialExample/ex1.cpp
  *
- * A simple example of minres usage without preconditioner.
+ * A simple example of MINRES() usage without preconditioner.
  */
 int main()
 {

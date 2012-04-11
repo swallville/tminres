@@ -20,7 +20,7 @@ http://www.stanford.edu/group/SOL/software/minres.html
     \section design Design
 
 The aim of tminres is to provide an efficient and portable implementation of 
-the MINRES algorithm.
+the MINRES() algorithm.
 
 tminres supports user-defined parallel and serial data structure for the 
 description of vectors, linear operators, and preconditioners.
@@ -38,6 +38,8 @@ Two concrete implementations of Vector_trait and Operator_trait are included in 
   <li>  Parallel code: A VectorEpetraAdapter shows how to wrap parallel data structures
       in Trilinos (http://trilinos.sandia.gov/) to be used with tminres.
 </ul>
+
+A detailed description of the MINRES() function interface is provided here.
 
     \section documentation Documentation
     

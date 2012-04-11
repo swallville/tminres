@@ -16,7 +16,7 @@
 /*!
  * @example SerialExample/ex2.cpp
  *
- * A simple example of minres usage with diagonal preconditioner.
+ * A simple example of MINRES() usage with diagonal preconditioner.
  *
  * We consider a Markers and Cells Finite Volume discretization of a 2d Stokes problem:
  * @f{eqnarray*}{

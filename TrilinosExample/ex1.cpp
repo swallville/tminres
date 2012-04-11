@@ -31,7 +31,7 @@
 /*!
  * @example TrilinosExample/ex1.cpp
  *
- * This code shows how to use MINRES with Epetra_Vector and Epetra_Matrices from Trilinos.
+ * This code shows how to use MINRES() with Epetra_Vector and Epetra_Matrices from Trilinos.
  *
  * We solve a 3D generalized Stokes problem in the unitary cube:
  *
