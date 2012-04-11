@@ -55,7 +55,7 @@ public:
 	 */
 	StokesOperator(int n_ );
 
-	//! Do nothing distructor.
+	//! Do nothing Destructor.
 	virtual ~StokesOperator();
 
 	//! Y = A*X where A is the Finite Volumes matrix of the discrete system.

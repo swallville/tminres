@@ -35,11 +35,11 @@ public:
 
 	//! Wrap the Epetra_MultiVector v_
 	/*!
-	 * If owned == true, this class will deallocate the object v_ in the distructor.
+	 * If owned == true, this class will deallocate the object v_ in the Destructor.
 	 */
 	EpetraVectorAdapter(Epetra_MultiVector * v_, bool owned = true);
 
-	//! Distructor
+	//! Destructor
 	/*
 	 * if owned == true, dellacate the memory pointed by v.
 	 */
