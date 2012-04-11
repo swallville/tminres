@@ -38,6 +38,13 @@ Two practical examples are included in the code:
       
 -------------------------------------------------------------------------------
 
+DOCUMENTATION
+
+To create the documentation
+
+$ doxygen Doxyfile.in
+
+-------------------------------------------------------------------------------
 EXAMPLES
 
 SerialExample:
