@@ -13,15 +13,20 @@
 @date 04/2012
 */
 
-/*
+/*!
+ * @example SerialExample/ex2.cpp
+ *
  * A simple example of minres usage with diagonal preconditioner.
+ *
  * We consider a Markers and Cells Finite Volume discretization of a 2d Stokes problem:
- * u - Laplacian u + grad p = f in [0,1]x[0,1]
- * div u = 0 in [0,1]x[0,1]
+ * @f{eqnarray*}{
+ * u - \Delta u + \nabla p &= f & {\rm in} \; [0,1]\times[0,1] \\
+ * {\rm div}\; u &= 0 & {\rm in} \; [0,1]\times[0,1]
+ * @f}
+ *
  * where u is the velocity field and p the pressure field.
  *
  */
-
 #include <pminres.hpp>
 #include "SimpleVector.hpp"
 #include "StokesOperator.hpp"

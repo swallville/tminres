@@ -13,11 +13,6 @@
 @date 04/2012
 */
 
-/*
- * @brief A simple example of minres usage without preconditioner.
- */
-
-
 #include <pminres.hpp>
 #include "SimpleVector.hpp"
 #include <cmath>
@@ -77,6 +72,12 @@ private:
 	double *vals;
 };
 
+
+/*!
+ * \example SerialExample/ex1.cpp
+ *
+ * A simple example of minres usage without preconditioner.
+ */
 int main()
 {
 	//(1) Define the size of the problem we want to solve

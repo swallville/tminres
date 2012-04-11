@@ -13,42 +13,6 @@
 @date 04/2012
 */
 
-
-/*
- * This code shows how to use MINRES with Epetra_Vector and Epetra_Matrices from Trilinos
- * We solve a 3D generalized Stokes problem in the unitary cube:
- *
- * u - Laplacian u + grad p = f
- * div u                    = 0
- *
- * where u is the velocity field and p the scalar pressure fields.
- *
- *
- * We use Tailor-Hood element (P2-P1) finite elements for the discretization of the pressure and velocity field.
- * The discrete saddle point system reads
- *
- * [ C   B^T] [u] = [f]
- * [ B    0 ] [p]   [0]
- *
- * where C = M + A is the sum of the velocity mass (M) and stiffness (A) matrix;
- *       B^T is pressure gradient matrix
- *
- * As preconditioner we use the SPD matrix
- *
- * P = [C 0]
- *     [0 W]
- *
- * where W is the diagonal of the pressure mass matrix.
- * The preconditioner P is applyied efficiently using one V-cycle of AMG (ml in Trilinos).
- *
- *
- * To run this code you must compile Trilinos. The required pakages are Epetra, EpetraExt, Teuchos, ML.
- *
- * USAGE:
- * mpirun -n 2 ./ex1.exe
- *
- */
-
 #include "EpetraVectorAdapter.hpp"
 #include "EpetraOperatorAdapter.hpp"
 #include "pminres.hpp"
@@ -63,6 +27,48 @@
 #include <EpetraExt_CrsMatrixIn.h>
 #include <ml_MultiLevelPreconditioner.h>
 #include <Teuchos_ParameterList.hpp>
+
+/*!
+ * @example TrilinosExample/ex1.cpp
+ *
+ * This code shows how to use MINRES with Epetra_Vector and Epetra_Matrices from Trilinos.
+ *
+ * We solve a 3D generalized Stokes problem in the unitary cube:
+ *
+ * @f[ u - \Delta u + \nabla p = f @f]
+ * @f[ {\rm div}  u            = 0 @f]
+ *
+ * where u is the velocity field and p the scalar pressure fields.
+ *
+ *
+ * We use Tailor-Hood element (P2-P1) finite elements for the discretization of the pressure and velocity field.
+ * The discrete saddle point system reads
+ *
+ * @f[
+ * \left[ \begin{array}{cc} C & B^T \\ B & 0 \end{array} \right]
+ * \left[ \begin{array}{c}  u \\ p \end{array} \right] =
+ * \left[ \begin{array}{c}  f \\ 0 \end{array} \right]
+ * @f]
+ *
+ * where C = M + A is the sum of the velocity mass (M) and stiffness (A) matrix;
+ *       B^T is pressure gradient matrix
+ *
+ * As preconditioner we use the SPD matrix
+ *
+ * @f[
+ * P = \left[ \begin{array}{cc} C & 0 \\ 0 & W \end{array} \right]
+ * @f]
+ *
+ * where W is the diagonal of the pressure mass matrix.
+ * The preconditioner P is applyied efficiently using one V-cycle of AMG (ml in Trilinos).
+ *
+ *
+ * To run this code you must compile Trilinos. The required pakages are Epetra, EpetraExt, Teuchos, ML.
+ *
+ * USAGE:
+ * mpirun -n 2 ./ex1.exe
+ *
+ */
 
 int main(int argc,char * argv[])
 {
