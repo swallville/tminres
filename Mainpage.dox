@@ -46,7 +46,12 @@ A detailed description of the MINRES() function interface is provided here.
 To create this documentation:
 
 \verbatim
- $ doxygen Doxyfile.in
+ $ make dox
+\endverbatim
+
+To erase the documentation
+\verbatim
+ $ make clean-dox
 \endverbatim
 
     \section examples Examples
@@ -95,3 +100,8 @@ $ make clean
 \endverbatim
 </ul>
  */
+
+To clean all examples:
+\verbatim
+$ make clean
+\endverbatim
