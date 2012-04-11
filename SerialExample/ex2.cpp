@@ -20,31 +20,30 @@
  *
  * We consider a Markers and Cells Finite Volume discretization of a 2d Stokes problem:
  * @f{eqnarray*}{
- * u - \Delta u + \nabla p &= f & {\rm in} \; [0,1]\times[0,1] \\
- * {\rm div}\; u &= 0 & {\rm in} \; [0,1]\times[0,1]
+ * \displaystyle \mathbf{u} - \Delta \mathbf{u} + \nabla p &= \mathbf{f} & {\rm in} \; [0,1]\times[0,1] \\
+ * \displaystyle {\rm div}\; \mathbf{u} &= 0 & {\rm in} \; [0,1]\times[0,1]
  * @f}
  *
- * where u is the velocity field and p the pressure field.
+ * where @f$\mathbf{u} = [u,v]@f$ is the velocity field and @f$p@f$ the pressure field.
  *
- */
-#include <pminres.hpp>
-#include "SimpleVector.hpp"
-#include <cmath>
-
-//! @class StokesOperator
-/*!
- * @brief A matrix free operator for the generalized Stokes problem
- *
- * This class implements a Markers and Cells (MAC) finite volume discretization of the generalized Stokes problem
- * in the unit cube:
+ * Component-wise the Stokes Equations read:
  * \f{eqnarray*}{
  * \displaystyle u - \Delta u + \frac{dp}{dx} &=& f_x \\
  * \displaystyle v - \Delta v + \frac{dp}{dy} &=& f_y \\
  * \displaystyle \frac{du}{dx} + \frac{dv}{dy}&=& 0
  * \f}
  *
- * where [u,v] is the velocity field and p the pressure fields.
  */
+#include <pminres.hpp>
+#include "SimpleVector.hpp"
+#include <cmath>
+#include <cassert>
+
+//! @class StokesOperator
+/*!
+ * @brief A matrix free operator for the generalized Stokes problem
+ *
+*/
 
 
 class StokesOperator {
