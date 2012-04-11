@@ -36,20 +36,20 @@ SimpleVector & SimpleVector::operator=(const double & val)
 	std::fill(vals, vals+size, val);
 	return *this;
 }
-//! Set the entry of the Vector equal to the entries in RHS
+// Set the entry of the Vector equal to the entries in RHS
 SimpleVector & SimpleVector::operator=(const SimpleVector & RHS)
 {
 	std::copy(RHS.vals, RHS.vals + RHS.size, vals);
 	return *this;
 }
 
-//! multiply THIS by a scalar value
+// multiply THIS by a scalar value
 void SimpleVector::Scale(const double & val)
 {
 	for( double * it(vals); it != vals + size; ++it)
 		(*it) *= val;
 }
-//! Create a new vector with the same structure of THIS. Values are not initialized.
+// Create a new vector with the same structure of THIS. Values are not initialized.
 SimpleVector * SimpleVector::Clone()
 {
 	return new SimpleVector(size);
@@ -94,7 +94,7 @@ void SimpleVector::Print(std::ostream & os)
 	os << "\n";
 }
 
-//! result = v1 + c2*v2
+// result = v1 + c2*v2
 void add(const SimpleVector & v1, const double & c2, const SimpleVector & v2, SimpleVector & result)
 {
 	int size(result.size);
@@ -110,7 +110,7 @@ void add(const SimpleVector & v1, const double & c2, const SimpleVector & v2, Si
 	for( ; rr != end; ++rr, ++vv1, ++vv2)
 		(*rr) = (*vv1) + c2*(*vv2);
 }
-//! result = c1*v1 + c2*v2
+// result = c1*v1 + c2*v2
 void add(const double & c1, const SimpleVector & v1, const double & c2, const SimpleVector & v2, SimpleVector & result)
 {
 	int size(result.size);
@@ -127,7 +127,7 @@ void add(const double & c1, const SimpleVector & v1, const double & c2, const Si
 		(*rr) = c1*(*vv1) + c2*(*vv2);
 }
 
-//! result = alpha(v1 + v2)
+// result = alpha(v1 + v2)
 void add(const double & alpha, const SimpleVector & v1, const SimpleVector & v2, SimpleVector & result)
 {
 	int size(result.size);
@@ -145,7 +145,7 @@ void add(const double & alpha, const SimpleVector & v1, const SimpleVector & v2,
 
 }
 
-//! result = v1 + v2 + v3
+// result = v1 + v2 + v3
 void add(const SimpleVector & v1, const SimpleVector & v2, const SimpleVector & v3, SimpleVector & result)
 {
 	int size(result.size);
@@ -164,7 +164,7 @@ void add(const SimpleVector & v1, const SimpleVector & v2, const SimpleVector & 
 		(*rr) = (*vv1) + (*vv2) + (*vv3);
 
 }
-//! result = v1 - v2
+// result = v1 - v2
 void subtract(const SimpleVector & v1, const SimpleVector & v2, SimpleVector & result)
 {
 	int size(result.size);
@@ -183,7 +183,7 @@ void subtract(const SimpleVector & v1, const SimpleVector & v2, SimpleVector & r
 
 }
 
-//! return the inner product of v1 and v2
+// return the inner product of v1 and v2
 double InnerProduct(const SimpleVector & v1, const SimpleVector & v2)
 {
 	double result(0);

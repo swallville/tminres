@@ -14,7 +14,7 @@
 */
 
 /*
- * A simple example of minres usage without preconditioner.
+ * @brief A simple example of minres usage without preconditioner.
  */
 
 
@@ -22,28 +22,28 @@
 #include "SimpleVector.hpp"
 #include <cmath>
 
+//!@class Preconditioner
+/*
+ * @brief An abstract preconditioner class.
+ * It should be used to call minres without preconditioner
+ */
 class Preconditioner
 {
-	//! @class Preconditioner
-	/*!
-	 * @brief An abstract preconditioner class.
-	 * It should be used to call minres without preconditioner
-	 */
 public:
 	//! Y = M\X
 	virtual void Apply(const SimpleVector & X, SimpleVector & Y) const = 0;
 };
 
+//!@class Operator
+/*
+ * @brief A simple diagonal linear operator.
+ * The first half of the diagonal entries are positive, the second half are negative
+ */
 class Operator
 {
 public:
-	//! @class Operator
-	/*!
-	 * @brief A simple diagonal linear operator.
-	 * The first half of the diagonal entries are positive, the second half are negative
-	 */
 
-	//! Constructor
+	//!Constructor
 	/*
 	 * @param size_ problem size
 	 */

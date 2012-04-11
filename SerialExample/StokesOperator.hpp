@@ -18,20 +18,24 @@
 
 #include "SimpleVector.hpp"
 
+//! @class StokesOperator
+/*!
+ * @brief A matrix free operator for the generalized Stokes problem
+ *
+ * This class implements a Markers and Cells (MAC) finite volume discretization of the generalized Stokes problem
+ * in the unit cube:
+ * \f{eqnarray*}{
+ * \displaystyle u - \Delta u + \frac{dp}{dx} &=& f_x \\
+ * \displaystyle v - \Delta v + \frac{dp}{dy} &=& f_y \\
+ * \displaystyle \frac{du}{dx} + \frac{dv}{dy}&=& 0
+ * \f}
+ *
+ * where [u,v] is the velocity field and p the pressure fields.
+ */
+
+
 class StokesOperator {
 public:
-	//! @class StokesOperator
-	/*!
-	 * @brief A matrix free operator for the generalized Stokes problem
-	 *
-	 * This class implements a Markers and Cells (MAC) finite volume discretization of the generalized Stokes problem
-	 * in the unit cube:
-	 * $$ u - \Delta u + dp/dx = f_x $$
-	 * $$ v - \Delta v + dp/dy = f_y $$
-	 * $$ du/dx + dv/dy        = 0   $$
-	 *
-	 * where [u,v] is the velocity field and p the pressure fields.
-	 */
 
 	//! Constructor
 	/*!
@@ -97,14 +101,13 @@ private:
 	int offsetP;
 };
 
+//! @class StokesDiagonalScaling
+/*!
+ * @brief A simple Diagonal preconditioner for the generalized Stokes Problem
+ */
 class StokesDiagonalScaling
 {
 public:
-	//! @class StokesDiagonalScaling
-	/*!
-	 * @brief A simple Diagonal preconditioner for the generalized Stokes Problem
-	 */
-
 	//! Constructor
 	/*!
 	 * @param n_ int : number of cell in the x direction. The number of cell in the y direction is also n_.

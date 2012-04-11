@@ -18,13 +18,15 @@
 
 #include <iostream>
 
+//! @class SimpleVector
+/*!
+ * @brief Implementation of a dense serial vector according to Vector_traits
+*/
+
+
 class SimpleVector
 {
 public:
-	//! @class SimpleVector
-	/*!
-	 * @brief Implementation of a dense serial vector according to Vector_traits
-	 */
 
 	//! Constructor
 	/*!

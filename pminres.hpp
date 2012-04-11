@@ -13,7 +13,10 @@
 @date 04/2012
 */
 
-/*
+/*!
+ @fn int MINRES
+ @brief Preconditioner Minres algorithm
+
 minres solves the n x n system of linear equations Ax = b
 or the n x n least squares problem           min ||Ax - b||_2^2,
 where A is a symmetric matrix (possibly indefinite or singular)

@@ -19,12 +19,13 @@
 #include <Epetra_MultiVector.h>
 #include <iostream>
 
+//! @class EpetraVectorAdapter
+/*!
+ * @brief Wrapper class to use Trilinos Epetra_Vector with minres.
+ */
+
 class EpetraVectorAdapter
 {
-	//! @class EpetraVectorAdapter
-	/*!
-	 * @brief Wrapper class to use Trilinos Epetra_Vector with minres.
-	 */
 public:
 	//! Wrap the Epetra_MultiVector v_.
 	/*!

@@ -16,12 +16,13 @@
 #ifndef VECTOR_TRAIT_HPP_
 #define VECTOR_TRAIT_HPP_
 
+//! @class Vector_trait
+/*!
+* @brief This class describes the interface of a VECTOR to be used in minres.
+*/
+
 class Vector_trait
 {
-	//! @class Vector_trait
-	/*!
-	 * @brief This class describes the interface of a VECTOR to be used in minres.
-	 */
 
 	//! Set all the entry of the Vector equal to val
 	Vector_trait & operator=(const double & val) = 0;

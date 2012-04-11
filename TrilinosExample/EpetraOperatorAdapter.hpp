@@ -19,11 +19,20 @@
 #include "EpetraVectorAdapter.hpp"
 #include <Epetra_Operator.h>
 
+//! @class EpetraOperatorAdapter
+/*!
+ * @brief Wrap an Epetra_Operator in a operator for MINRES
+ */
 class EpetraOperatorAdapter
 {
 public:
+	//! Construnctor
+	/*!
+	 * @param op_ Epetra_Operator
+	 */
 	EpetraOperatorAdapter(Epetra_Operator & op_) : op(op_) { };
 
+	//! Y = op * X
 	void Apply(const EpetraVectorAdapter & X, EpetraVectorAdapter & Y) const
 	{
 		int ierr(0);
@@ -38,11 +47,21 @@ private:
 	Epetra_Operator & op;
 };
 
+//! @class EpetraPreconditionerAdapter
+/*!
+ * @brief Wrap an Epetra_Operator in a preconditioner for MINRES
+ */
 class EpetraPreconditionerAdapter
 {
 public:
+
+	//! Construnctor
+	/*!
+	 * @param prec_ Epetra_Operator
+	 */
 	EpetraPreconditionerAdapter(Epetra_Operator & prec_) : prec(prec_) { };
 
+	//! Y = prec \ X
 	void Apply(const EpetraVectorAdapter & X, EpetraVectorAdapter & Y) const
 	{
 		int ierr(0);
