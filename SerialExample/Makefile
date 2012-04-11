@@ -7,7 +7,7 @@ all : ex1.exe ex2.exe testSimpleVector.exe
 ex1.exe :ex1.o SimpleVector.o
 	$(CC) $^ -o $@
 
-ex2.exe : ex2.o SimpleVector.o StokesOperator.o
+ex2.exe : ex2.o SimpleVector.o
 	$(CC) $^ -o $@ 
 	
 testSimpleVector.exe : testSimpleVector.o SimpleVector.o
