@@ -17,4 +17,4 @@ testSimpleVector.exe : testSimpleVector.o SimpleVector.o
 	$(CC) -c $(C_FLAGS) $(I_DIR) $^ 
 
 clean :
-	rm *.o *.exe
+	rm -f *.o *.exe

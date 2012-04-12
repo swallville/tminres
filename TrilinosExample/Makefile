@@ -12,4 +12,4 @@ testEpetraVectorAdapter.exe : testEpetraVectorAdapter.o EpetraVectorAdapter.o
 	$(MPICC) -c $(C_FLAG) $(INCLUDE_FLAG) $^
 
 clean : 
-	rm *.exe *.o
+	rm -f *.exe *.o
