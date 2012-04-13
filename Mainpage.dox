@@ -71,8 +71,8 @@ To compile and execute the serial examples:
 \verbatim
 $ cd SerialExample
 $ make
-$ ./ex1
-$ ./ex2
+$ ./ex1.exe
+$ ./ex2.exe
 $ make clean
 \endverbatim
 
