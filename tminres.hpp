@@ -122,8 +122,11 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 
 	if(show)
 	{
-		std::cout<<"Adapted from minres.m, Stanford University, 06 Jul 2009 \n";
-		std::cout<<"Solution of symmetric Ax=b or (A-shift*I)x = b \n";
+		std::cout<<std::setfill('-')<<std::setw(80)<<"-"<< "\n";
+		std::cout<<"|            Adapted from minres.m, Stanford University, 06 Jul 2009            |\n";
+		std::cout<<"|                Solution of symmetric Ax=b or (A-shift*I)x = b                 |\n";
+		std::cout<<std::setfill('-')<<std::setw(80)<<"-"<<"\n";
+		std::cout<<std::setfill(' ');
 		std::cout<<"shift = "<< shift << "; tol = " << tol << "; max iter = " << max_iter<<"\n";
 	}
 
@@ -214,7 +217,12 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 	const std::auto_ptr<Vector> v(x.Clone());
 
 	if(show)
-		std::cout<<" Itn \t Compatible \t LS \t norm(A) \t cond(A) \t gbar/|A| \n ";
+		std::cout<<std::setw(6)<<"Itn"
+		         << std::setw(14) << "Compatible"
+		         << std::setw(14) << "LS"
+		         << std::setw(14) << "norm(A)"
+		         << std::setw(14) << "cond(A)"
+		         << std::setw(14) << "gbar/|A|"<<"\n";
 
 	/* Main Iteration */
 	if(!done)
@@ -354,8 +362,12 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 			}
 
 			if(show)
-				std::cout<< itn << "\t" << test1 << "\t" << test2 << "\t" <<
-				            Anorm << "\t" << Acond << "\t" << gbar/Anorm << std::endl;
+				std::cout<< std::setw(6) << itn
+						 << std::setw(14) << test1
+						 << std::setw(14) << test2
+						 << std::setw(14) << Anorm
+						 << std::setw(14) << Acond
+						 << std::setw(14) << gbar/Anorm << std::endl;
 
 			if(0 != istop)
 				break;
@@ -366,11 +378,14 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 	// Display final status
 	if(show)
 	{
-		std::cout << msg[istop] << std::endl;
-		std::cout << "Number of iterations: " << itn << std::endl;
-		std::cout << "Anorm = " << Anorm << "\t Acond = " << Acond << std::endl;
-		std::cout << "rnorm = " << rnorm << "\t ynorm = " << ynorm << std::endl;
-		std::cout << "Arnorm = " << Arnorm << std::endl;
+		std::cout << std::setfill('-') << std::setw(80) << "-" << "\n";
+		std::cout << msg[istop] << "\n";
+		std::cout << " Number of iterations: " << itn << "\n";
+		std::cout << " Anorm = " << Anorm << "\t Acond = " << Acond << "\n";
+		std::cout << " rnorm = " << rnorm << "\t ynorm = " << ynorm << "\n";
+		std::cout << " Arnorm = " << Arnorm << "\n";
+		std::cout << std::setfill('-') << std::setw(80) << "-" << std::endl;
+		std::cout << std::setfill(' ');
 	}
 
 	return istop;
