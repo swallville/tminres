@@ -11,8 +11,8 @@ MINRES was first proposed by C.C. Paige and M.A. Saunders (1975).
 It is based on Lanczos tridiagonalization.
 A symmetric positive definite preconditioner can be specified.
 
-The present C++ implementation is based on the matlab code by
-Michael Saunders (SOL, Stanford University) and Sou Cheng Choi (SCCM, Stanford University)
+The present C++ implementation is based on the Matlab code by
+Michael Saunders (SOL and ICME, Stanford University), Chris Paige (School of Computer Science, McGill University) and Sou Cheng Choi (ICME, Stanford University)
 available at
 
 http://www.stanford.edu/group/SOL/software/minres.html
