@@ -151,6 +151,7 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 	const std::auto_ptr<Vector> y(x.Clone());
 
 	A.Apply(x, *r1);
+	add(*r1, -shift, x, *r1);
 	subtract(b, *r1, *r1);
 
 	if(M)
