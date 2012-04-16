@@ -99,7 +99,7 @@ Known bugs:
 template< typename Operator, typename Vector, typename Preconditioner>
 int
 MINRES(const Operator &A, Vector &x, const Vector &b,
-         const Preconditioner * M, double shift, int &max_iter, double &tol, bool show)
+		const Preconditioner * M, double shift, int &max_iter, double &tol, bool show)
 {
 
 	typedef Operator operator_Type;
@@ -173,32 +173,10 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 			done = true;
 		}
 		else
-			beta1 = std::sqrt(beta1); // Normilize y to get v1 later
+			beta1 = std::sqrt(beta1); // Normalize y to get v1 later
 	}
 
-// TODO: port this checks
-/*  if check & precon
-    r2     = minresxxxM( M,y );
-    s      = y' *y;
-    t      = r1'*r2;
-    z      = abs(s-t);
-    epsa   = (s+eps)*eps^(1/3);
-    if z > epsa, istop = 8;  show = true;  done = true; end
-  end
-
-  % See if A is symmetric.
-
-  if check
-     w    = minresxxxA( A,y );
-     r2   = minresxxxA( A,w );
-     s    = w'*w;
-     t    = y'*r2;
-     z    = abs(s-t);
-     epsa = (s+eps)*eps^(1/3);
-     if z > epsa, istop = 7;  done  = true;  show = true;  end
-  end
-	 *
-	 */
+	// TODO: port symmetry checks for A and M
 
 	// STEP 2
 	/* Initialize other quantities */
@@ -231,19 +209,19 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 		{
 			// STEP 3
 			/*
-	-----------------------------------------------------------------
-     Obtain quantities for the next Lanczos vector vk+1, k = 1, 2,...
-     The general iteration is similar to the case k = 1 with v0 = 0:
+			-----------------------------------------------------------------
+     	 	Obtain quantities for the next Lanczos vector vk+1, k = 1, 2,...
+     	 	The general iteration is similar to the case k = 1 with v0 = 0:
 
-       p1      = Operator * v1  -  beta1 * v0,
-       alpha1  = v1'p1,
-       q2      = p2  -  alpha1 * v1,
-       beta2^2 = q2'q2,
-       v2      = (1/beta2) q2.
+			p1      = Operator * v1  -  beta1 * v0,
+       	   	alpha1  = v1'p1,
+       	   	q2      = p2  -  alpha1 * v1,
+       	   	beta2^2 = q2'q2,
+       	   	v2      = (1/beta2) q2.
 
-     Again, y = betak P vk,  where  P = C**(-1).
-     .... more description needed.
-    -----------------------------------------------------------------
+     	 	Again, y = betak P vk,  where  P = C**(-1).
+     	 	.... more description needed.
+    		-----------------------------------------------------------------
 			 */
 			double s(1./beta); //Normalize previous vector (in y)
 			(*v)  = (*y);
@@ -339,11 +317,10 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 
 			// Estimate cond(A)
 			/*
-	 In this version we look at the diagonals of  R  in the
-     factorization of the lower Hessenberg matrix,  Q * H = R,
-     where H is the tridiagonal matrix from Lanczos with one
-     extra row, beta(k+1) e_k^T.
-			 *
+	 	 	 In this version we look at the diagonals of  R  in the
+     	 	 factorization of the lower Hessenberg matrix,  Q * H = R,
+     	 	 where H is the tridiagonal matrix from Lanczos with one
+     	 	 extra row, beta(k+1) e_k^T.
 			 */
 			Acond = gmax/gmin;
 
@@ -363,11 +340,11 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 
 			if(show)
 				std::cout<< std::setw(6) << itn
-						 << std::setw(14) << test1
-						 << std::setw(14) << test2
-						 << std::setw(14) << Anorm
-						 << std::setw(14) << Acond
-						 << std::setw(14) << gbar/Anorm << std::endl;
+				         << std::setw(14) << test1
+				         << std::setw(14) << test2
+				         << std::setw(14) << Anorm
+				         << std::setw(14) << Acond
+				         << std::setw(14) << gbar/Anorm << std::endl;
 
 			if(0 != istop)
 				break;
