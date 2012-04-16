@@ -291,13 +291,13 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 			gmax    = std::max(gmax, gamma);
 			gmin    = std::min(gmin, gamma);
 			z       = rhs1/gamma;
-			ynorm2 += z*z;
 			rhs1    = rhs2 - delta*z;
 			rhs2    =      - epsln*z;
 
 			// Estimate various norms
 
 			Anorm = sqrt(tnorm2);
+			ynorm2 = InnerProduct(*x, *x);
 			ynorm = sqrt(ynorm2);
 			double epsa(Anorm*eps);
 			double epsx(epsa*ynorm);
