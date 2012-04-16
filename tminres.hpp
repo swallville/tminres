@@ -257,9 +257,6 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 			{
 				if(beta/beta1 < 10.0*eps)
 					istop = 10;
-
-				gmax = std::fabs(alpha);
-				gmin = gmax;
 			}
 
 			// Apply previous rotation Q_{k-1} to get
