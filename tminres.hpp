@@ -74,16 +74,21 @@ and b is a given vector.  The dimension n is defined by length(b).
 
 Known bugs:
 <ul>
-  <li> ynorm is currently mimicking ynorm in symmlq.m.
-     It should be sqrt(x'Mx), but doesn't seem to be correct.
-     Users really want xnorm = norm(x) anyway.  It would be safer
-     to compute it directly.
   <li> As Jeff Kline pointed out, Arnorm = ||A r_{k-1}|| lags behind
      rnorm = ||r_k||.  On singular systems, this means that a good
      least-squares solution exists before Arnorm is small enough
      to recognize it.  The solution x_{k-1} gets updated to x_k
      (possibly a very large solution) before Arnorm shuts things
      down the next iteration.  It would be better to keep x_{k-1}.
+</ul>
+
+Other notes:
+<ul>
+ <li> ynorm = norm(x) is computed directly at the cost of an additional
+      inner product. This can represent a bottle-neck in the parallel case.
+      In fact it is possible to avoid norm(x) by updating certain scalar quantities
+      (see the QLP factors in MINRES-QLP).  It would add only cheap (scalar)
+      arithmetic, but lots of extra code.
 </ul>
 */
 
