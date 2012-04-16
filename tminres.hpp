@@ -303,7 +303,7 @@ MINRES(const Operator &A, Vector &x, const Vector &b,
 			// Estimate various norms
 
 			Anorm = sqrt(tnorm2);
-			ynorm2 = InnerProduct(*x, *x);
+			ynorm2 = InnerProduct(x, x);
 			ynorm = sqrt(ynorm2);
 			double epsa(Anorm*eps);
 			double epsx(epsa*ynorm);
