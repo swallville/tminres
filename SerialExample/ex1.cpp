@@ -16,6 +16,7 @@
 #include <tminres.hpp>
 #include "SimpleVector.hpp"
 #include <cmath>
+#include <fstream>
 
 //!@class Preconditioner
 /*
@@ -52,7 +53,6 @@ public:
 
 		for( ; i < size; ++i)
 			vals[i] = -i;
-
 	}
 
 	~Operator()
@@ -65,6 +65,16 @@ public:
 	{
 		for(int i(0); i < size; ++i)
 			Y[i] = vals[i] * X[i];
+	}
+
+	void Print(std::ostream & os)
+	{
+		os<< "d = [";
+		int i(0);
+		for( ; i<size-1; ++i)
+			os<<vals[i]<<"; ";
+		os<<vals[i]<<"];\n";
+		os<<"Op = spdiags(d, 0,"<<size<<", "<<size<<");\n";
 	}
 
 private:
@@ -103,7 +113,7 @@ int main()
 
 	//(7) Set the minres parameters
 	double shift(0);
-	int max_iter(10000);
+	int max_iter(100);
 	double tol(1e-6);
 	bool show(true);
 
@@ -114,6 +124,15 @@ int main()
 	subtract(x, sol, x);
 	double err2 = InnerProduct(x,x);
 	std::cout<< "|| x_ex - x_n || = " << sqrt(err2) << "\n";
+
+	std::ofstream fid("ex1.m");
+	op.Print(fid);
+	fid<< "rhs = [";
+	for(int i(0); i<size-1; ++i)
+		fid<<rhs[i] <<"; ";
+	fid<<rhs[size-1] <<"]; \n";
+	fid<<"[ x, istop, itn, rnorm, Arnorm, Anorm, Acond, ynorm ] = minres(Op, rhs, [], 0, true, false, 100, 1e-6);\n";
+
 
 	return 0;
 }
