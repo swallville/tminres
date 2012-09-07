@@ -17,7 +17,7 @@
 #define SIMPLEVECTOR_HPP_
 
 #include <iostream>
-
+#include <vector>
 //! @class SimpleVector
 /*!
  * @brief Implementation of a dense serial vector according to Vector_traits
@@ -40,7 +40,9 @@ public:
 	SimpleVector &  operator=(const double & val);
 	//! Set the entry of the Vector equal to the entries in RHS
 	SimpleVector & operator=(const SimpleVector & RHS);
-	//! multiply THIS by a scalar value
+    //! Set the entry of the Vector equal to the entries in the std vector RHS
+	SimpleVector & operator=(const std::vector<double> RHS);
+	///! multiply THIS by a scalar value
 	void Scale(const double & val);
 	//! Create a new vector with the same structure of THIS. Values are not initialized.
 	SimpleVector * Clone();

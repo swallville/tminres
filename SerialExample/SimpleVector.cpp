@@ -18,6 +18,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
+#include <vector>
 
 SimpleVector::SimpleVector(int size_):
 	size(size_)
@@ -42,6 +43,14 @@ SimpleVector & SimpleVector::operator=(const SimpleVector & RHS)
 	std::copy(RHS.vals, RHS.vals + RHS.size, vals);
 	return *this;
 }
+
+// Set the entries of the vector equal to the vector starting at rhs*
+SimpleVector & SimpleVector::operator=(const std::vector<double> RHS)
+{
+    std::copy(RHS.begin(), RHS.end(), vals);
+    return *this;
+}
+
 
 // multiply THIS by a scalar value
 void SimpleVector::Scale(const double & val)
