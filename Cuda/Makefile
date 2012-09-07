@@ -2,12 +2,15 @@ CC = nvcc
 C_FLAGS = -g
 I_DIR = -I ../ 
 
-all : testCuda.exe cuda_example1.exe 
+all : testCuda.exe cuda_example1.exe cuda_timing.exe
 
 testCuda.exe : testCuda.o CudaVector.o CudaOperator.o
 	$(CC) $^ -o $@ $(I_DIR) -lcuda -lcublas
 
 cuda_example1.exe : cuda_example1.o CudaVector.o CudaOperator.o 
+	$(CC) $^ -o $@ $(I_DIR) -lcuda -lcublas
+
+cuda_timing.exe : CudaVector.o CudaOperator.o cuda_timing.o
 	$(CC) $^ -o $@ $(I_DIR) -lcuda -lcublas
 
 %.o : %.cu

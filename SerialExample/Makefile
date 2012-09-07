@@ -2,7 +2,7 @@ CC = g++
 C_FLAGS = -g
 I_DIR = -I ../
 
-all : ex1.exe ex2.exe ex3.exe testSimpleVector.exe 
+all : ex1.exe ex2.exe ex3.exe testSimpleVector.exe serial_timing.exe
 
 ex1.exe :ex1.o SimpleVector.o
 	$(CC) $^ -o $@
@@ -14,6 +14,9 @@ ex3.exe : ex3.o SimpleVector.o SimpleOperator.o
 	$(CC) $^ -o $@ 
 
 testSimpleVector.exe : testSimpleVector.o SimpleVector.o
+	$(CC) $^ -o $@
+
+serial_timing.exe : serial_timing.o SimpleVector.o SimpleOperator.o
 	$(CC) $^ -o $@
 
 %.o : %.cpp
