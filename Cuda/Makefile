@@ -1,5 +1,5 @@
 CC = nvcc
-C_FLAGS = -g
+C_FLAGS = -g -arch=sm_20
 I_DIR = -I ../ 
 
 all : testCuda.exe cuda_example1.exe 
