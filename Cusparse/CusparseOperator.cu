@@ -9,7 +9,7 @@
 #include "cusparse_v2.h"
 #include <cuda_runtime.h>
 #include <vector>
-
+#include <time.h>
 CusparseOperator::CusparseOperator(cusparseHandle_t handle_, std::vector<int> row_ptr, std::vector<int> col_ix, std::vector<double> vals): handle(handle_)
 {
    cudaError_t cudaStat;
@@ -105,4 +105,5 @@ void CusparseOperator::Apply(const CusparseVector & x, CusparseVector & y) const
        std::cerr << "Unable to execute matrix vector product, Error: "<< cusparseStatus<<"\n";
        throw cusparseStatus;
     }
+
 }

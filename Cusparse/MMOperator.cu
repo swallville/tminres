@@ -46,6 +46,13 @@ MMOperator::MMOperator(cusparseHandle_t handle_, FILE* mm_f): CusparseOperator(h
        std::cerr << "Complex matrices are not supported \n";
        throw TMINRES_CUBLAS_MM_UNSUPORTED;
    }
+   if(mm_is_pattern(mm_t))
+   {
+
+       std::cerr << "Pattern matrices are not supported \n";
+       throw TMINRES_CUBLAS_MM_UNSUPORTED;
+   }
+ 
    if(!mm_is_sparse(mm_t))
    {
         std::cerr << "Dense matrices are not supported by this operator \n";
