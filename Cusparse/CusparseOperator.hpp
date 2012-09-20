@@ -10,6 +10,7 @@
 
 #include "CusparseVector.hpp"
 #include <cusparse_v2.h>
+#define  TMINRES_CUBLAS_MM_UNSUPORTED 1;
 
 class CusparseOperator {
 public:
@@ -30,10 +31,18 @@ public:
     CusparseOperator(cusparseHandle_t handle_, std::vector<int> row_ptr, std::vector<int> col_ix, std::vector<double> vals);
 
     ~CusparseOperator();
-
+    //Useful accessors
+    int get_n();
+    int get_nnz();
+    
 	//! y = A*x
 	void Apply(const CusparseVector & X, CusparseVector & y) const;
+
+    //Load mehtods these are useful to create an instance from a matrix market file
+
+    static CusparseOperator LoadMMFile(cusparseHandle_t handle_,FILE* mm_f);
     
+     
 protected:
     //!Constructor for inheriting classes
     /*
@@ -61,5 +70,20 @@ protected:
 
     //Pointer to the vector containing the indices of the columns of the values in the GPU
     int*     csrColIndA;
+
+private:
+
+	//! This constructor is called by the Load_. methods 
+	/*!
+	 * @param handle_ : Cusparse library handle 
+     * @param row_ptr : Cusparse Matrix descriptor 
+     * @param csrValA_  : device pointer to the values array
+     * @param csrColIndA_ : device pointer to the column indices
+     * @param csrRowPtrA_ : device pointer to the row pointers
+     * @param n           : n
+     * @param nnz         : Number of non zeros, if the matrix is symmetric this is the number of nz in the upper triangular part
+	 */
+
+    CusparseOperator(cusparseHandle_t handle_,cusparseMatDescr_t matDesc_ ,double* csrValA_, int* csrColIndA_, int* csrRowPtrA_, int n, int nnz);
 };
 #endif /* CUSPARSEOPERATOR_HPP_ */
