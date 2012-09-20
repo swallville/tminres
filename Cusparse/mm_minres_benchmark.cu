@@ -67,7 +67,6 @@ void generate_random_normalized_values(std::vector<double> &d_a)
 void run_test_for_matrix(cusparseHandle_t handle, std::string filename, std::ofstream &results_file)
 {
 
-    std::cout << "Will load "<<filename<<"\n";
     FILE* mm_f = fopen(filename.c_str(),"r");
     CusparseOperator mm_O = CusparseOperator::LoadMMFile(handle,mm_f);
     int n = mm_O.get_n();
@@ -119,13 +118,14 @@ void run_test_for_matrix(cusparseHandle_t handle, std::string filename, std::ofs
         //XXX:Do we have to delete the vectors or will the change of context call the destructor?
 
         //Save the values
-        std::cout << filename << "," << i << "," << iters << "," << resnorm << "," << sqrt(err2) << "," << (int)(toc-tic) << std::endl;
+        std::cout << "," << i;
         errors.push_back(sqrt(err2));
         iterations.push_back(iters);
         residuals.push_back(resnorm);
         times.push_back(toc-tic);
 
     }
+        std::cout << std::endl;
         double avg_error = std::accumulate(errors.begin(),errors.end(),0.0);
         avg_error /= REPS;
         double avg_resnorm = std::accumulate(residuals.begin(),residuals.end(),0.0);
@@ -136,6 +136,7 @@ void run_test_for_matrix(cusparseHandle_t handle, std::string filename, std::ofs
         avg_time /= REPS;
 
         results_file<< filename << "," << n <<"," << nnz <<"," << avg_iterations << "," << avg_resnorm << "," << avg_error << "," << avg_time << std::endl;
+        std::cout <<filename <<","<< n <<"," << nnz <<"," << avg_iterations << "," << avg_resnorm << "," << avg_error << "," << avg_time << std::endl;
         results_file.flush();
 
 }
